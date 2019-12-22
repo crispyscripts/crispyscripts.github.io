@@ -1,5 +1,5 @@
 # crispyscripts.github.io
 
-I'm testing the hosting of a website on github.
+Crisp scripts repositories
 
 https://crispyscripts.github.io

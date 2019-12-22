@@ -1,5 +1,5 @@
 # crispyscripts.github.io
 
-Crisp scripts repositories
+Crisp script repositories
 
 https://crispyscripts.github.io

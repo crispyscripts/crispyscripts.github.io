@@ -1,0 +1,24 @@
+body {
+    margin-left: 50px;
+    margin-right: 50px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+    font-weight: bold;
+}
+
+.logo {
+    float:left;
+    margin-right: 15px;
+}
+
+.logo > img {
+    height: 80px;
+    width: 80px;
+}
+
+#repos {
+    clear: left;
+    float:left;
+}

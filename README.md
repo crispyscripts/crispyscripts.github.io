@@ -1,5 +1,5 @@
-# www.crispyscripts.co.uk
+# crispyscripts.co.uk
 
 Crisp script repositories
 
-https://crispyscripts.github.io
+https://crispyscripts.co.uk

@@ -9,6 +9,13 @@ header {
     font-weight: bold;
 }
 
+#copyright {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    font-size:small;
+}
+
 .logo {
     float:left;
     margin-right: 15px;
@@ -17,9 +24,4 @@ header {
 .logo > img {
     height: 80px;
     width: 80px;
-}
-
-#repos {
-    clear: left;
-    float:left;
 }

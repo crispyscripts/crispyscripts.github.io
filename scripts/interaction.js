@@ -9,7 +9,6 @@ $(document).ready(function() {
 
     $('#saveEntry').click(function() {
         localStorage.setItem("entry", $('#entry').val());
-        alert("I've saved that for you - open a new tab to see!")
     });
 
 });

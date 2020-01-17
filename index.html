@@ -7,6 +7,7 @@
     <link href="styles/styles.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="scripts/storage.js" ></script>
     <script type="text/javascript" src="scripts/interaction.js" ></script>
+    <script type="text/javascript" src="scripts/geolocation.js" ></script>
 </head>
 <body>
     <header>
@@ -29,9 +30,15 @@
                 <li><a href="https://github.com/crispyscripts/kevinmeetspython">kevinmeetspython</a></li>
             </ul>
         </div> -->
-        <p>Type something and click save - then reload or open a new tab</p>
+        <p>Type something and click save - I'll remember it for next time!</p>
         <input type="text" id="entry"></input>
         <input type="button" id="saveEntry" title="save entry" value="Save" />
+        <br/>
+        <br/>
+        <div id="geo">
+            <input type="button" id="getGeoLocation" onclick="getPosition();" value="Locate Me" />
+            <div id = "infoParagraph"></div>
+        </div>
     </main>
     <footer>
         <div id="copyright">

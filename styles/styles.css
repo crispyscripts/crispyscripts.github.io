@@ -1,6 +1,6 @@
 body {
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #ffbd4a;
 }
@@ -24,4 +24,8 @@ header {
 .logo > img {
     height: 80px;
     width: 80px;
+}
+
+canvas {
+    border: 1px solid black;
 }

@@ -1,9 +1,8 @@
-var canvas = document.querySelector('canvas');
+var aCanvas = document.querySelector('canvas');
+aCanvas.width = window.innerWidth;
+aCanvas.height = window.innerHeight;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-var c = canvas.getContext('2d');
+var c = aCanvas.getContext('2d');
 
 function Circle(x, y, dx, dy, radius, red, green, blue, transparency) {
     this.x = x;
@@ -47,7 +46,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, transparency) {
 var circleArray = [];
 
 for (var i = 0; i < 100; i ++) {
-    var radius = 30;
+    var radius = Math.random() * 30;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
     var dx = (Math.random() - 0.5) * 8;

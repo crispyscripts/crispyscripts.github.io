@@ -1,9 +1,10 @@
 body {
     margin: 0;
+    /* overflow: hidden; */
+    background-color: darkslategray;
 }
 
 canvas {
-    border: 1px solid black;
     background-color: darkslategray;
 }
 
@@ -22,6 +23,7 @@ canvas {
 }
 
 .logo > img {
-    height: 80px;
-    width: 80px;
+    opacity: 0.8;
+    height: 75%;
+    width: 75%;
 }

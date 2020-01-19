@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmnls="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+    <title>Crispy Scripts</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="styles/styles.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="scripts/storage.js" ></script>
+    <script type="text/javascript" src="scripts/interaction.js" ></script>
+    <script type="text/javascript" src="scripts/geolocation.js" ></script>
+    
+</head>
+<body>
+    <header>
+        <div>
+            <a class="logo" href="index.html">
+                <img src="images/pan.png" />
+            </a>
+        </div>
+    </header>
+    <main>
+        <h1>Crispy Scripts</h1>
+        <h3>That real crisp taste</h3>
+        <!-- <div id="repos">
+
+            <h3>Repositories</h3>
+            <ul>
+                <li><a href="https://github.com/crispyscripts/crispyscripts.github.io">crispyscripts.github.io</a><br/></li>
+                <li><a href="https://github.com/crispyscripts/meshobjects">meshobjects</a></li>
+                <li><a href="https://github.com/crispyscripts/heatmap"><div style="color:red">heatmap<div></a></li>
+                <li><a href="https://github.com/crispyscripts/kevinmeetspython">kevinmeetspython</a></li>
+            </ul>
+        </div> -->
+        <p>Type something and click save - I'll remember it for next time!</p>
+        <input type="text" id="entry"></input>
+        <input type="button" id="saveEntry" title="save entry" value="Save" />
+        <br/>
+        <br/>
+        <div id="geo">
+
+            <input type="button" id="getGeoLocation" onclick="getPosition();" value="Locate Me" />
+            <div id = "infoParagraph"></div>
+        </div>
+
+        <br/>
+
+        <a href="canvas.html">Canvas</a>
+        
+    </main>
+    <footer>
+        <div id="copyright">
+            v1.0.0
+            @Copyright Daniel Tilly 2020
+        </div>
+    </footer>
+</body>
+</html>

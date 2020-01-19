@@ -13,7 +13,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.red = red;
     this.green = green;
     this.blue = blue;
-    this.opacity = 0.06;
+    this.opacity = 0.01;
 
     this.draw = function() {
 
@@ -45,7 +45,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 
 var circleArray = [];
 var totalBalls = 100;
-var totalSize = 300;
+var totalSize = 100;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalSize;

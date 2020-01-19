@@ -4,7 +4,7 @@ aCanvas.height = window.innerHeight;
 
 var c = aCanvas.getContext('2d');
 
-function Circle(x, y, dx, dy, radius, red, green, blue, transparency) {
+function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -13,13 +13,13 @@ function Circle(x, y, dx, dy, radius, red, green, blue, transparency) {
     this.red = red;
     this.green = green;
     this.blue = blue;
-    this.transparency = transparency;
+    this.opacity = 0.01;
 
     this.draw = function() {
 
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.transparency + ')';
+        var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.opacity + ')';
         c.strokeStyle = rgb;
         c.fillStyle = rgb;
         c.stroke();
@@ -44,9 +44,10 @@ function Circle(x, y, dx, dy, radius, red, green, blue, transparency) {
 }
 
 var circleArray = [];
+var totalBalls = 25;
 
-for (var i = 0; i < 50; i ++) {
-    var radius = Math.random() * 50;
+for (var i = 0; i < totalBalls; i ++) {
+    var radius = Math.random() * 750;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
     var dx = (Math.random() - 0.5) * 8;
@@ -55,15 +56,15 @@ for (var i = 0; i < 50; i ++) {
     var red = Math.random() * 255;
     var green = Math.random() * 255;
     var blue = Math.random() * 255;
-    var transparency = Math.random();
+    var opacity = Math.random();
 
-    circleArray.push(new Circle(x, y, dx, dy, radius, red, green, blue, transparency));  
+    circleArray.push(new Circle(x, y, dx, dy, radius, red, green, blue, opacity));  
 }
 
 function animate() {
     requestAnimationFrame(animate);
 
-    c.clearRect(0, 0, innerWidth, innerHeight);
+    // c.clearRect(0, 0, innerWidth, innerHeight);
 
     for (var i = 0; i < circleArray.length; i++) {
         circleArray[i].update();

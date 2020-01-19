@@ -13,7 +13,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.red = red;
     this.green = green;
     this.blue = blue;
-    this.opacity = 0.01;
+    this.opacity = opacity;
 
     this.draw = function() {
 
@@ -45,7 +45,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 
 var circleArray = [];
 var totalBalls = 100;
-var totalSize = 100;
+var totalSize = 30;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalSize;
@@ -65,7 +65,7 @@ for (var i = 0; i < totalBalls; i ++) {
 function animate() {
     requestAnimationFrame(animate);
 
-    // c.clearRect(0, 0, innerWidth, innerHeight);
+    c.clearRect(0, 0, innerWidth, innerHeight);
 
     for (var i = 0; i < circleArray.length; i++) {
         circleArray[i].update();

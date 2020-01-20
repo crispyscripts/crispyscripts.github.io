@@ -3,6 +3,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
+var gravityX = 0;
+var gravityY = -90;
 
 function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.x = x;
@@ -50,8 +52,8 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 }
 
 var circleArray = [];
-var totalBalls = 30;
-var totalRadius = 50;
+var totalBalls = 20;
+var totalRadius = 25;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalRadius;
@@ -68,8 +70,8 @@ for (var i = 0; i < totalBalls; i ++) {
     while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
 
     // create params for a new ball
-    var dx = (Math.random() * 0.1);
-    var dy = (Math.random() * 0.1);
+    var dx = gravityX; // (Math.random() * 0.1);
+    var dy = gravityY; // (Math.random() * 0.1);
 
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;
@@ -144,6 +146,17 @@ function resolveCollision(ball1, ball2) {
     }
 }
 
+function handleOrientation(event) {
+  var absolute = event.absolute;
+  var alpha    = event.alpha;
+  var beta     = event.beta;
+  var gamma    = event.gamma;
+
+  // Do stuff with the new orientation data
+  gravityX = beta;
+  gravityY = gamma;
+}
+
 var totalFrames = -1;
 var frameCount = 0;
 
@@ -161,4 +174,5 @@ function animate() {
     drawBalls();
 }
 
+window.addEventListener('deviceorientation', handleOrientation);
 animate();

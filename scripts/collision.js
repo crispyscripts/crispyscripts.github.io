@@ -16,6 +16,9 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.green = green;
     this.blue = blue;
     this.opacity = opacity;
+    this.redn = 1;
+    this.greenn = 1;
+    this.bluen = 1;
 
     this.draw = function() {
 
@@ -25,24 +28,24 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
         var v = Math.floor(Math.random() * 3);
 
         if (v == 1) {
-          if (this.red == 255) {
-            this.red = 0;
+          if (this.red == 255 || this.red == 0) {
+            this.redn = -this.redn;
           }
-          this.red++;
+          this.red = this.red + this.redn;
         }
 
         if (v == 2) {
-          if (this.green == 255) {
-            this.green = 0;
+          if (this.green == 255 || this.green == 0) {
+            this.greenn = -this.greenn;
           }
-          this.green++;
+          this.green = this.green + this.greenn;
         }
 
         if (v == 3) {
-          if (this.blue == 255) {
-            this.blue = 0;
+          if (this.blue == 255 || this.blue == 0) {
+            this.bluen = -this.bluen;
           }
-          this.blue++;
+          this.blue = this.blue + this.bluen;
         }
 
         var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.opacity + ')';

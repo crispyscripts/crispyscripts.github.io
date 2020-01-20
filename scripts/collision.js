@@ -10,77 +10,155 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.dx = dx;
     this.dy = dy;
     this.radius = radius;
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
-    this.opacity = opacity;
 
     this.draw = function() {
 
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.opacity + ')';
+
+        var rgb = 'rgb(' + red + ',' + green + ',' + blue + ', ' + opacity + ')';
+
         c.strokeStyle = rgb;
         c.fillStyle = rgb;
         c.stroke();
         c.fill();
     }
 
-    this.intersects = function(overlap) {
-        var dxx = this.x - overlap.x;
-        var dyy = this.y - overlap.y;
-        var distance = Math.sqrt((dxx * dxx) + (dyy * dyy));
+    this.intersects = function(overlapX, overlapY, overlapRadius) {
+        // var dxx = this.x - overlapX;
+        // var dyy = this.y - overlapY;
 
-        return distance <= (this.radius + overlap.radius);        
+        // var distance = Math.sqrt((dxx * dxx) + (dyy * dyy));
+
+        // return distance <= (this.radius + overlapRadius);
+
+        var xd = this.x - overlapX;
+        var yd = this.y - overlapY;
+
+        var sumRadius = this.radius + overlapRadius;
+        var  sqrRadius = sumRadius * sumRadius;
+    
+        var  distSqr = (xd * xd) + (yd * yd);
+    
+        if (distSqr <= sqrRadius)
+        {
+            return true;
+        }
+    
+        return false;    
     }
 }
 
 var circleArray = [];
-var totalBalls = 30;
+var totalBalls = 50;
 var totalRadius = 50;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalRadius;
-    var x = Math.random() * (innerWidth - radius * 2) + radius;
-    var y = Math.random() * (innerHeight - radius * 2) + radius;
-    var dx = (Math.random() - 0.5) * 1;
-    var dy = (Math.random() - 0.5) * 1;
+    var x = 0;
+    var y = 0;
+    var checkCount = 0;
 
-    var red = Math.random() * 255;
-    var green = Math.random() * 255;
-    var blue = Math.random() * 255;
+    // ensure balls are not placed on top of each other
+    do {
+        x = Math.random() * (innerWidth - radius * 2) + radius;
+        y = Math.random() * (innerHeight - radius * 2) + radius;
+        checkCount ++;
+    } 
+    while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
+
+    // create params for a new ball
+    var dx = (Math.random() * 0.1);
+    var dy = (Math.random() * 0.1);
+
+    var red = Math.random() * 255  + 5;
+    var green = Math.random() * 255 + 5;
+    var blue = Math.random() * 255 + 5;
     var opacity = Math.random();
 
+    // add a new ball to the array
     circleArray.push(new Circle(x, y, dx, dy, radius, red, green, blue, opacity));  
 }
 
-function animate() {
-    requestAnimationFrame(animate);
+function findEmptyPlace(i, x, y, radius) {
+    for (var j = 0; j < i; j++) {
+        var circ = circleArray[j];
+        if (circ.intersects(x, y, radius)) {
+            return true;
+        }
+    }
+    return false;
+}
 
-    c.clearRect(0, 0, innerWidth, innerHeight);
-
-    for (var i = 0; i < circleArray.length-1; i++) {
+function moveBalls() {
+    for (var i = 0; i < circleArray.length; i++) {
         for (var j = i + 1; j < circleArray.length; j++) {
 
             var ca = circleArray[i];
             var cx = circleArray[j];
 
-            if (ca.x + ca.radius > innerWidth || ca.x - ca.radius < 0 || ca.intersects(cx)) {
+            if (ca.x + ca.radius > innerWidth || ca.x - ca.radius < 0) {
                 ca.dx = -ca.dx;
             }
         
-            if (ca.y + ca.radius > innerHeight || ca.y - ca.radius < 0 || ca.intersects(cx)) {
+            if (ca.y + ca.radius > innerHeight || ca.y - ca.radius < 0) {
                 ca.dy = -ca.dy;
             }
-        
+
             ca.x += ca.dx;
             ca.y += ca.dy;
+            
+            resolveCollision(ca, cx);
         }
     }
+}
 
+function drawBalls() {
     for (var i = 0; i < circleArray.length; i++) {
         circleArray[i].draw();
     }
+}
+
+function resolveCollision(ball1, ball2) {
+    var xd = ball2.x - ball1.x;
+    var yd = ball2.y - ball1.y;
+    var distance = Math.sqrt(xd * xd + yd * yd);
+    var minDistance = ball1.radius + ball2.radius;
+    
+    if (distance < minDistance)
+    {
+        var angle = Math.atan2(xd, yd);
+        var spread = minDistance - distance;
+        var ax = spread * Math.cos(angle);
+        var ay = spread * Math.sin(angle);
+
+        ball1.x -= ax;
+        ball1.y -= ay;
+        
+        var punch = 0.2;
+                    
+        ball1.dx -= punch*Math.cos(angle);
+        ball1.dy -= punch*Math.sin(angle);
+        ball2.dx += punch*Math.cos(angle);
+        ball2.dy += punch*Math.sin(angle);
+    }
+}
+
+var totalFrames = -1;
+var frameCount = 0;
+
+function animate() {
+
+    if (frameCount < totalFrames || totalFrames == -1)
+    {
+        requestAnimationFrame(animate);
+        frameCount++;
+    }
+
+    c.clearRect(0, 0, innerWidth, innerHeight);
+
+    moveBalls();
+    drawBalls();
 }
 
 animate();

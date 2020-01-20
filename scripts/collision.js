@@ -50,7 +50,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 }
 
 var circleArray = [];
-var totalBalls = 50;
+var totalBalls = 30;
 var totalRadius = 50;
 
 for (var i = 0; i < totalBalls; i ++) {

@@ -53,7 +53,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 
 var circleArray = [];
 var totalBalls = 20;
-var totalRadius = 15;
+var totalRadius = 25;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalRadius;
@@ -70,8 +70,8 @@ for (var i = 0; i < totalBalls; i ++) {
     while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
 
     // create params for a new ball
-    var dx = gravityX; // (Math.random() * 0.1);
-    var dy = gravityY; // (Math.random() * 0.1);
+    var dx = (Math.random() * 0.1);
+    var dy = (Math.random() * 0.1);
 
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;

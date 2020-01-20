@@ -70,8 +70,8 @@ for (var i = 0; i < totalBalls; i ++) {
     while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
 
     // create params for a new ball
-    var dx = gravityX * 0.01; // (Math.random() * 0.1);
-    var dy = gravityY * 0.01; // (Math.random() * 0.1);
+    var dx = (Math.random() * 0.1);
+    var dy = (Math.random() * 0.1);
 
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;
@@ -107,8 +107,8 @@ function moveBalls() {
                 ca.dy = -ca.dy;
             }
 
-            ca.x += ca.dx + (gravityY * 0.005);
-            ca.y += ca.dy + (gravityX * 0.005);
+            ca.x += ca.dx;
+            ca.y += ca.dy;
             
             resolveCollision(ca, cx);
         }
@@ -174,5 +174,5 @@ function animate() {
     drawBalls();
 }
 
-window.addEventListener('deviceorientation', handleOrientation);
+//window.addEventListener('deviceorientation', handleOrientation);
 animate();

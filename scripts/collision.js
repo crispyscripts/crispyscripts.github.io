@@ -26,23 +26,23 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 
         if (v == 1) {
           if (this.red == 255) {
-            red=0;
+            this.red = 0;
           }
-          red++;
+          this.red++;
         }
 
         if (v == 2) {
           if (this.green == 255) {
-            green=0;
+            this.green = 0;
           }
-          green++;
+          this.green++;
         }
 
         if (v == 3) {
           if (this.blue == 255) {
-            blue=0;
+            this.blue = 0;
           }
-          blue++;
+          this.blue++;
         }
 
         var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.opacity + ')';

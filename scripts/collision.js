@@ -4,7 +4,7 @@ canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
 var gravityX = 0;
-var gravityY = -90;
+var gravityY = 90;
 
 function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.x = x;

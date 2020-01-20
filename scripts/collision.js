@@ -74,7 +74,7 @@ for (var i = 0; i < totalBalls; i ++) {
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;
     var blue = Math.random() * 255 + 5;
-    var opacity = Math.random();
+    var opacity = 1; //Math.random();
 
     // add a new ball to the array
     circleArray.push(new Circle(x, y, dx, dy, radius, red, green, blue, opacity));  
@@ -127,7 +127,7 @@ function resolveCollision(ball1, ball2) {
     
     if (distance < minDistance)
     {
-        var angle = Math.atan2(xd, yd);
+        var angle = Math.atan2(yd, xd);
         var spread = minDistance - distance;
         var ax = spread * Math.cos(angle);
         var ay = spread * Math.sin(angle);
@@ -135,12 +135,12 @@ function resolveCollision(ball1, ball2) {
         ball1.x -= ax;
         ball1.y -= ay;
         
-        var punch = 0.2;
+        var punch = 2;
                     
-        ball1.dx -= punch*Math.cos(angle);
-        ball1.dy -= punch*Math.sin(angle);
-        ball2.dx += punch*Math.cos(angle);
-        ball2.dy += punch*Math.sin(angle);
+        ball1.dx -= punch * Math.cos(angle) * 0.02;
+        ball1.dy -= punch * Math.sin(angle) * 0.02;
+        ball2.dx += punch * Math.cos(angle) * 0.02;
+        ball2.dy += punch * Math.sin(angle) * 0.02;
     }
 }
 

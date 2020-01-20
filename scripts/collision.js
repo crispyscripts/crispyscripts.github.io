@@ -1,8 +1,8 @@
-var aCanvas = document.querySelector('canvas');
-aCanvas.width = window.innerWidth;
-aCanvas.height = window.innerHeight;
+var canvas = document.querySelector('canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-var c = aCanvas.getContext('2d');
+var c = canvas.getContext('2d');
 
 function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.x = x;
@@ -25,59 +25,26 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
         c.stroke();
         c.fill();
     }
-    
-    this.intersects = function(index) {
-        this.index = index;
 
-        for (var i = 0; i < totalBalls; i++) {
-            if (i != this.index) {
+    this.intersects = function(overlap) {
+        var dxx = this.x - overlap.x;
+        var dyy = this.y - overlap.y;
+        var distance = Math.sqrt((dxx * dxx) + (dyy * dyy));
 
-                var ca = circleArray[i];
-
-                var dx = this.x - ca.x;
-                var dy = this.y - ca.y;
-                var distance = Math.sqrt((dx * dx) + (dy * dy));
-
-                return distance <= (this.radius + ca.radius);
-
-                // if (this.x - this.radius >= ca.x - ca.radius && this.x + this.radius <= ca.x + ca.radius
-                //     && this.y - this.radius >= ca.y - ca.radius && this.y + this.radius <= ca.y + ca.radius) {
-                //     return true;
-                // }
-            }
-        }
-    
-        return false;
-    }
-
-    this.update = function(index) {
-        this.index = index;
-        if (this.x + this.radius > innerWidth || this.x - this.radius < 0 || this.intersects(this.index) ) {
-            this.dx = -this.dx;
-        }
-    
-        if (this.y + this.radius > innerHeight || this.y - this.radius < 0 || this.intersects(this.index))
-        {
-            this.dy = -this.dy;
-        }
-    
-        this.x += this.dx;
-        this.y += this.dy;
-
-        this.draw();
+        return distance <= (this.radius + overlap.radius);        
     }
 }
 
 var circleArray = [];
-var totalBalls = Math.random() * 100;
-var totalRadius = 30;
+var totalBalls = 30;
+var totalRadius = 50;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalRadius;
     var x = Math.random() * (innerWidth - radius * 2) + radius;
     var y = Math.random() * (innerHeight - radius * 2) + radius;
-    var dx = (Math.random() - 0.5) * 8;
-    var dy = (Math.random() - 0.5) * 8;
+    var dx = (Math.random() - 0.5) * 1;
+    var dy = (Math.random() - 0.5) * 1;
 
     var red = Math.random() * 255;
     var green = Math.random() * 255;
@@ -92,8 +59,27 @@ function animate() {
 
     c.clearRect(0, 0, innerWidth, innerHeight);
 
+    for (var i = 0; i < circleArray.length-1; i++) {
+        for (var j = i + 1; j < circleArray.length; j++) {
+
+            var ca = circleArray[i];
+            var cx = circleArray[j];
+
+            if (ca.x + ca.radius > innerWidth || ca.x - ca.radius < 0 || ca.intersects(cx)) {
+                ca.dx = -ca.dx;
+            }
+        
+            if (ca.y + ca.radius > innerHeight || ca.y - ca.radius < 0 || ca.intersects(cx)) {
+                ca.dy = -ca.dy;
+            }
+        
+            ca.x += ca.dx;
+            ca.y += ca.dy;
+        }
+    }
+
     for (var i = 0; i < circleArray.length; i++) {
-        circleArray[i].update(i);
+        circleArray[i].draw();
     }
 }
 

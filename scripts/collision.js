@@ -52,8 +52,8 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 }
 
 var circleArray = [];
-var totalBalls = 20;
-var totalRadius = 25;
+var totalBalls = Math.random() * 50 + 2;
+var totalRadius = Math.random() * 50 + 2;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalRadius;
@@ -70,8 +70,8 @@ for (var i = 0; i < totalBalls; i ++) {
     while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
 
     // create params for a new ball
-    var dx = 0.5; // (Math.random() * 0.2);
-    var dy = 0.5; // (Math.random() * 0.2);
+    var dx = (Math.random() * 0.2);
+    var dy = (Math.random() * 0.2);
 
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;
@@ -116,7 +116,7 @@ function moveBalls() {
 }
 
 function drawBalls() {
-    for (var i = 0; i < circleArray.length - 1; i++) {
+    for (var i = 0; i < circleArray.length; i++) {
         circleArray[i].draw();
     }
 }

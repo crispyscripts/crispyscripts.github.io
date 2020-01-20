@@ -107,8 +107,8 @@ function moveBalls() {
                 ca.dy = -ca.dy;
             }
 
-            ca.x += ca.dx + (gravityX * 0.01);
-            ca.y += ca.dy + (gravityY * 0.01);
+            ca.x += ca.dx + (gravityY * 0.005);
+            ca.y += ca.dy + (gravityX * 0.005);
             
             resolveCollision(ca, cx);
         }

@@ -116,7 +116,7 @@ function moveBalls() {
 }
 
 function drawBalls() {
-    for (var i = 0; i < circleArray.length; i++) {
+    for (var i = 0; i < circleArray.length - 1; i++) {
         circleArray[i].draw();
     }
 }

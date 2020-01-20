@@ -100,8 +100,8 @@ for (var i = 0; i < totalBalls; i ++) {
     while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
 
     // create params for a new ball
-    var dx = (Math.random() * 0.2);
-    var dy = (Math.random() * 0.2);
+    var dx = (Math.random() * -0.5);
+    var dy = (Math.random() * -0.5);
 
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;

@@ -10,7 +10,7 @@ canvas {
 .triangle {
     position: fixed;
     background-color: transparent;
-    color: silver;
+    color: black;
     left : 50%;
     width: 300px;
     padding-top: 7%;

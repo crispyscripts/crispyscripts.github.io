@@ -22,7 +22,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
 
-        var v = Math.random() * 3;
+        var v = Math.floor(Math.random() * 3);
 
         if (v == 1) {
           if (this.red == 255) {

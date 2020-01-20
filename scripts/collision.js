@@ -25,14 +25,38 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
         c.stroke();
         c.fill();
     }
+    
+    this.intersects = function(index) {
+        this.index = index;
+
+        for (var i = 0; i < totalBalls; i++) {
+            if (i != this.index) {
+
+                var ca = circleArray[i];
+
+                var dx = this.x - ca.x;
+                var dy = this.y - ca.y;
+                var distance = Math.sqrt((dx * dx) + (dy * dy));
+
+                return distance <= (this.radius + ca.radius);
+
+                // if (this.x - this.radius >= ca.x - ca.radius && this.x + this.radius <= ca.x + ca.radius
+                //     && this.y - this.radius >= ca.y - ca.radius && this.y + this.radius <= ca.y + ca.radius) {
+                //     return true;
+                // }
+            }
+        }
+    
+        return false;
+    }
 
     this.update = function(index) {
         this.index = index;
-        if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+        if (this.x + this.radius > innerWidth || this.x - this.radius < 0 || this.intersects(this.index) ) {
             this.dx = -this.dx;
         }
     
-        if (this.y + this.radius > innerHeight || this.y - this.radius < 0)
+        if (this.y + this.radius > innerHeight || this.y - this.radius < 0 || this.intersects(this.index))
         {
             this.dy = -this.dy;
         }

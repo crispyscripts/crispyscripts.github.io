@@ -12,13 +12,40 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
     this.dx = dx;
     this.dy = dy;
     this.radius = radius;
+    this.red = red;
+    this.green = green;
+    this.blue = blue;
+    this.opacity = opacity;
 
     this.draw = function() {
 
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
 
-        var rgb = 'rgb(' + red + ',' + green + ',' + blue + ', ' + opacity + ')';
+        var v = Math.random() * 3;
+
+        if (v == 1) {
+          if (this.red == 255) {
+            red=0;
+          }
+          red++;
+        }
+
+        if (v == 2) {
+          if (this.green == 255) {
+            green=0;
+          }
+          green++;
+        }
+
+        if (v == 3) {
+          if (this.blue == 255) {
+            blue=0;
+          }
+          blue++;
+        }
+
+        var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.opacity + ')';
 
         c.strokeStyle = rgb;
         c.fillStyle = rgb;

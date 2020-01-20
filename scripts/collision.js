@@ -53,7 +53,7 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 
 var circleArray = [];
 var totalBalls = 20;
-var totalRadius = 25;
+var totalRadius = 15;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = Math.random() * totalRadius;

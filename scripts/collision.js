@@ -86,7 +86,7 @@ var totalBalls = 30;
 var totalRadius = 30;
 
 for (var i = 0; i < totalBalls; i ++) {
-    var radius = Math.random() * totalRadius;
+    var radius = totalRadius;
     var x = 0;
     var y = 0;
     var checkCount = 0;

@@ -82,8 +82,8 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 }
 
 var circleArray = [];
-var totalBalls = 30;
-var totalRadius = 30;
+var totalBalls = 75;
+var totalRadius = 20;
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = totalRadius;
@@ -100,8 +100,8 @@ for (var i = 0; i < totalBalls; i ++) {
     while (checkCount < 100 && findEmptyPlace(i, x, y, radius))
 
     // create params for a new ball
-    var dx = (Math.random() * -0.5);
-    var dy = (Math.random() * -0.5);
+    var dx = (Math.random() + -0.5);
+    var dy = (Math.random() + -0.5);
 
     var red = Math.random() * 255  + 5;
     var green = Math.random() * 255 + 5;
@@ -172,10 +172,10 @@ function resolveCollision(ball1, ball2) {
         
         var punch = 2;
                     
-        ball1.dx -= punch * Math.cos(angle) + 0.2;
-        ball1.dy -= punch * Math.sin(angle) + 0.2;
-        ball2.dx += punch * Math.cos(angle) + 0.2;
-        ball2.dy += punch * Math.sin(angle) + 0.2;
+        ball1.dx -= punch * Math.cos(angle) * 0.02;
+        ball1.dy -= punch * Math.sin(angle) * 0.02;
+        ball2.dx += punch * Math.cos(angle) * 0.02;
+        ball2.dy += punch * Math.sin(angle) * 0.02;
     }
 }
 

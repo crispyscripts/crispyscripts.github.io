@@ -25,29 +25,6 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
         c.beginPath();
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
 
-        var v = Math.floor(Math.random() * 3);
-
-        if (v == 1) {
-          if (this.red >= 255 || this.red <= 0) {
-            this.redn = -this.redn;
-          }
-          this.red = this.red + this.redn;
-        }
-
-        if (v == 2) {
-          if (this.green >= 255 || this.green <= 0) {
-            this.greenn = -this.greenn;
-          }
-          this.green = this.green + this.greenn;
-        }
-
-        if (v == 3) {
-          if (this.blue >= 255 || this.blue <= 0) {
-            this.bluen = -this.bluen;
-          }
-          this.blue = this.blue + this.bluen;
-        }
-
         var rgb = 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ', ' + this.opacity + ')';
 
         c.strokeStyle = rgb;
@@ -82,8 +59,8 @@ function Circle(x, y, dx, dy, radius, red, green, blue, opacity) {
 }
 
 var circleArray = [];
-var totalBalls = 75;
-var totalRadius = 20;
+var totalBalls = Math.floor(innerHeight / 50);
+var totalRadius = Math.floor(innerWidth / 25);
 
 for (var i = 0; i < totalBalls; i ++) {
     var radius = totalRadius;
@@ -155,27 +132,27 @@ function drawBalls() {
 }
 
 function resolveCollision(ball1, ball2) {
-    var xd = ball2.x - ball1.x;
-    var yd = ball2.y - ball1.y;
-    var distance = Math.sqrt(xd * xd + yd * yd);
+    var dx = ball2.x - ball1.x;
+    var dy = ball2.y - ball1.y;
+    var distance = Math.sqrt((dx * dx) + (dy * dy));
     var minDistance = ball1.radius + ball2.radius;
     
     if (distance < minDistance)
     {
-        var angle = Math.atan2(yd, xd);
-        var spread = minDistance - distance;
-        var ax = spread * Math.cos(angle);
-        var ay = spread * Math.sin(angle);
+        var angle = Math.atan2(dy, dx),
+            spread = minDistance - distance,
+            ax = spread * Math.cos(angle),
+            ay = spread * Math.sin(angle);
 
         ball1.x -= ax;
         ball1.y -= ay;
         
-        var punch = 2;
+        var punch = 0.5;
                     
-        ball1.dx -= punch * Math.cos(angle) * 0.02;
-        ball1.dy -= punch * Math.sin(angle) * 0.02;
-        ball2.dx += punch * Math.cos(angle) * 0.02;
-        ball2.dy += punch * Math.sin(angle) * 0.02;
+        ball1.dx -= punch * Math.cos(angle);
+        ball1.dy -= punch * Math.sin(angle);
+        ball2.dx += punch * Math.cos(angle);
+        ball2.dy += punch * Math.sin(angle);
     }
 }
 

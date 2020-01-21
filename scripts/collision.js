@@ -169,10 +169,10 @@ function resolveCollision(ball1, ball2) {
         
         var punch = 2;
                     
-        ball1.dx -= punch * Math.cos(angle) * 0.02;
-        ball1.dy -= punch * Math.sin(angle) * 0.02;
-        ball2.dx += punch * Math.cos(angle) * 0.02;
-        ball2.dy += punch * Math.sin(angle) * 0.02;
+        ball1.dx -= punch * Math.cos(angle);
+        ball1.dy -= punch * Math.sin(angle);
+        ball2.dx += punch * Math.cos(angle);
+        ball2.dy += punch * Math.sin(angle);
     }
 }
 

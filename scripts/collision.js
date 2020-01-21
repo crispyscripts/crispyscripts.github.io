@@ -124,7 +124,10 @@ function findEmptyPlace(i, x, y, radius) {
 
 function moveBalls() {
     for (var i = 0; i < circleArray.length; i++) {
-        for (var j = i + 1; j < circleArray.length; j++) {
+        for (var j = 0; j < circleArray.length; j++) {
+
+            if (i == j)
+            { continue; }
 
             var ca = circleArray[i];
             var cx = circleArray[j];

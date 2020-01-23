@@ -4,7 +4,7 @@ canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
 var gravity = 1;
-var friction = 0.6;
+var friction = 0.8;
 
 function Ball(x, y, dy, radius, color) {
     this.x = x;

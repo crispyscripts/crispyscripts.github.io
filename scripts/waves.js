@@ -4,7 +4,7 @@ canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
 
-function Particle(x, y, radius, color) {
+function Particle(x, y, radius, color, animateX) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -25,8 +25,11 @@ function Particle(x, y, radius, color) {
         this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
         this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
 
-        this.x = this.lastMouse.x + Math.cos(this.radians) * this.radx;
-        this.y = this.lastMouse.y + Math.sin(this.radians) * this.rady;
+        this.x = (!animateX ? this.lastMouse.x : x) + Math.cos(this.radians) * this.radx;
+
+        if (!animateX) {
+            this.y = this.lastMouse.y + Math.sin(this.radians) * this.rady;
+        }
 
         this.draw();
     }
@@ -39,11 +42,12 @@ function Particle(x, y, radius, color) {
     }
 }
 
-var particles = [];
+var balls = [];
 
-particles.push(new Particle(canvas.width /2, canvas.height / 2, 5, 'green' ));
-particles.push(new Particle(canvas.width /2, canvas.height / 2, 10, 'teal' ));
-particles.push(new Particle(canvas.width /2, canvas.height / 2, 7, 'lightgreen' ));
+balls.push(new Particle(canvas.width /2, canvas.height / 2, 5, 'green', false));
+balls.push(new Particle(canvas.width /2, canvas.height / 2, 10, 'teal', false));
+balls.push(new Particle(canvas.width /2, canvas.height / 2, 7, 'lightgreen', false));
+balls.push(new Particle(canvas.width /2, canvas.height / 2, 7, 'blue', true));
 
 function animate() {
 
@@ -51,7 +55,7 @@ function animate() {
     c.fillStyle = 'rgba(255, 255, 255, 0.4)';
     c.fillRect(0, 0, canvas.width, canvas.height);
 
-    particles.forEach(x => x.update());
+    balls.forEach(x => x.update());
 }
 
 //window.addEventListener('deviceorientation', handleOrientation);

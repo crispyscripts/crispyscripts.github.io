@@ -26,12 +26,21 @@ canvas {
     opacity: 0.7;
 }
 
-#links a:link, a:visited, a:hover, a:active
+#links
 {
     position: absolute;
     right: 20px;
     bottom: 15px;
+}
+
+ul 
+{
     font-size:32px;
-    color: white;
+    list-style-type: none;
+}
+
+#links a:link, a:visited, a:hover, a:active
+{
     text-decoration: none;
+    color:white;
 }

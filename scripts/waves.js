@@ -15,6 +15,7 @@ function Particle(x, y, radius, color) {
     this.update = function() {
         this.radians += this.velocity;
         this.x = x + Math.cos(this.radians) * 100;
+        this.y = y + Math.sin(this.radians) * 100;
         this.draw();
     }
 
@@ -29,7 +30,7 @@ function Particle(x, y, radius, color) {
 
 var particles = [];
 
-particles.push(new Particle(canvas.width /2, canvas.height / 2, 5, 'blue'));
+particles.push(new Particle(canvas.width /2, canvas.height / 2, 5, 'green' ));
 
 function animate() {
 

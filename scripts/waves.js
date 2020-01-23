@@ -51,8 +51,8 @@ function animate() {
 
 //window.addEventListener('deviceorientation', handleOrientation);
 window.addEventListener('mousemove', event => {
-    // mouse.x = event.clientX;
-    // mouse.y = event.clientY;
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
 });
 
 window.addEventListener('mousedown', event => {

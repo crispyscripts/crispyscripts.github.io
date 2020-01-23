@@ -4,7 +4,7 @@ canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
 var gravity = 1;
-var friction = 0.5;
+var friction = 0.6;
 
 function Ball(x, y, dy, radius, color) {
     this.x = x;
@@ -37,9 +37,6 @@ function Ball(x, y, dy, radius, color) {
 var balls = [];
 
 balls.push(new Ball(canvas.width /2, canvas.height / 2, 2, 30, 'green'));
-// balls.push(new Ball(canvas.width /2, canvas.height / 2, 10, 'teal'));
-// balls.push(new Ball(canvas.width /2, canvas.height / 2, 7, 'lightgreen'));
-// balls.push(new Ball(canvas.width /2, canvas.height / 2, 7, 'blue'));
 
 function animate() {
 
@@ -55,22 +52,16 @@ function animate() {
 //     mouse.y = event.clientY;
 // });
 
-// window.addEventListener('mousedown', event => {
-//     mouse.x = event.clientX;
-//     mouse.y = event.clientY;
+window.addEventListener('mousedown', event => {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
 
-//     c.beginPath();
-//     c.arc(mouse.x, mouse.y, 25, 0, Math.PI * 2, false);
-//     c.strokeStyle = 'rgb(125, 125, 125, 1)';
-//     c.stroke;
-//     c.fill();
-//     c.closePath();        
+    balls.push(new Ball(event.clientX, event.clientY, 2, 30, 'green'));
+});
 
-// });
-
-// const mouse = {
-//     x: innerWidth / 2,
-//     y: innerHeight /2
-// }
+const mouse = {
+    x: innerWidth / 2,
+    y: innerHeight /2
+}
 
 animate();

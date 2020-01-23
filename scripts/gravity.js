@@ -15,7 +15,7 @@ function Ball(x, y, dy, radius, color) {
     this.dy = dy;
 
     this.update = function() {
-        if (this.y + this.radius this.dy > canvas.height) {
+        if (this.y + this.radius + this.dy > canvas.height) {
             this.dy = -this.dy;
             this.dy = this.dy * friction;
         } else {

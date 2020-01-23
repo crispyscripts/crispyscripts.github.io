@@ -56,7 +56,7 @@ window.addEventListener('mousedown', event => {
     mouse.x = event.clientX;
     mouse.y = event.clientY;
 
-    balls.push(new Ball(event.clientX, event.clientY, 2, 30, 'green'));
+    balls.push(new Ball(event.clientX, event.clientY, 2, 30, rgb(5,Math.random() * 255 + 1, 5));
 });
 
 const mouse = {

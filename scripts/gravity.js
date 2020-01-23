@@ -3,7 +3,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
-var gravity = 1;
+var gravity = 0.2;
 var friction = 0.8;
 
 function Ball(x, y, dy, radius, color) {
@@ -15,8 +15,9 @@ function Ball(x, y, dy, radius, color) {
     this.dy = dy;
 
     this.update = function() {
-        if (this.y + this.radius > canvas.height) {
+        if (this.y + this.radius this.dy > canvas.height) {
             this.dy = -this.dy;
+            this.dy = this.dy * friction;
         } else {
             this.dy += gravity;
         }

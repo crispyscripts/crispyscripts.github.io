@@ -33,7 +33,6 @@ function Particle(x, y, radius, color) {
         c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
         c.fillStyle = this.color;
         c.fill();
-        c.closePath();
     }
 }
 
@@ -52,8 +51,21 @@ function animate() {
 
 //window.addEventListener('deviceorientation', handleOrientation);
 window.addEventListener('mousemove', event => {
+    // mouse.x = event.clientX;
+    // mouse.y = event.clientY;
+});
+
+window.addEventListener('mousedown', event => {
     mouse.x = event.clientX;
     mouse.y = event.clientY;
+
+    c.beginPath();
+    c.arc(mouse.x, mouse.y, 25, 0, Math.PI * 2, false);
+    c.strokeStyle = 'rgb(125, 125, 125, 1)';
+    c.stroke;
+    c.fill();
+    c.closePath();        
+
 });
 
 const mouse = {

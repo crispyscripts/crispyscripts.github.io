@@ -13,9 +13,12 @@ function Particle(x, y, radius, color) {
     this.velocity = 0.05;
 
     this.update = function() {
+
+        const lastPoint = {x: this.x, y: this.y};
+
         this.radians += this.velocity;
-        this.x = x + Math.cos(this.radians) * 100;
-        this.y = y + Math.sin(this.radians) * 100;
+        this.x = mouse.x + Math.cos(this.radians) * 100;
+        this.y = mouse.y + Math.sin(this.radians) * 100;
         this.draw();
     }
 
@@ -42,4 +45,14 @@ function animate() {
 }
 
 //window.addEventListener('deviceorientation', handleOrientation);
+window.addEventListener('mousemove', event => {
+    mouse.x = event.clientX;
+    mouse.y = event.clientY;
+});
+
+const mouse = {
+    x: innerWidth / 2,
+    y: innerHeight /2
+}
+
 animate();

@@ -9,9 +9,12 @@ function Particle(x, y, radius, color) {
     this.y = y;
     this.radius = radius;
     this.color = color;
-    this.radians = 0;
-    this.velocity = 0.1;
+    this.radians = Math.random() * Math.PI * 2;
+    this.velocity = 0.05;
     this.lastMouse = {x: x, y: y};
+    this.radx = Math.random() * 100 + 30;
+    this.rady = Math.random() * 100 + 30;
+
 
     this.update = function() {
 
@@ -22,8 +25,8 @@ function Particle(x, y, radius, color) {
         this.lastMouse.x += (mouse.x - this.lastMouse.x) * 0.05;
         this.lastMouse.y += (mouse.y - this.lastMouse.y) * 0.05;
 
-        this.x = this.lastMouse.x + Math.cos(this.radians) * 50;
-        this.y = this.lastMouse.y + Math.sin(this.radians) * 50;
+        this.x = this.lastMouse.x + Math.cos(this.radians) * this.radx;
+        this.y = this.lastMouse.y + Math.sin(this.radians) * this.rady;
 
         this.draw();
     }
@@ -39,11 +42,13 @@ function Particle(x, y, radius, color) {
 var particles = [];
 
 particles.push(new Particle(canvas.width /2, canvas.height / 2, 5, 'green' ));
+particles.push(new Particle(canvas.width /2, canvas.height / 2, 10, 'teal' ));
+particles.push(new Particle(canvas.width /2, canvas.height / 2, 7, 'lightgreen' ));
 
 function animate() {
 
     requestAnimationFrame(animate);
-    c.fillStyle = 'rgba(255, 255, 255, 0.05)';
+    c.fillStyle = 'rgba(255, 255, 255, 0.4)';
     c.fillRect(0, 0, canvas.width, canvas.height);
 
     particles.forEach(x => x.update());

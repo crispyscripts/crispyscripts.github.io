@@ -23,6 +23,9 @@ function Ball(x, y, dy, radius, color) {
         }
 
         this.y += this.dy;
+
+        //this.draw();
+        findCollision(this);
         this.draw();
     }
 
@@ -45,6 +48,43 @@ function animate() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
     balls.forEach(ball => ball.update());
+}
+
+function findCollision(ball) {
+    this.ball = ball;
+    for (var i = 0; i < balls.length; i++) {
+
+        if (balls[i] == this.ball) { 
+            continue; 
+        }
+
+        resolveCollision(this.ball, balls[i]);
+    }
+}
+
+function resolveCollision(ball1, ball2) {
+    var dx = ball2.x - ball1.x;
+    var dy = ball2.y - ball1.y;
+    var distance = Math.sqrt((dx * dx) + (dy * dy));
+    var minDistance = ball1.radius + ball2.radius;
+    
+    if (distance < minDistance)
+    {
+        var angle = Math.atan2(dy, dx),
+            spread = minDistance - distance,
+            ax = spread * Math.cos(angle),
+            ay = spread * Math.sin(angle);
+
+        ball1.x -= ax;
+        ball1.y -= ay;
+        
+        var punch = 0.5;
+                    
+        ball1.dx -= punch * Math.cos(angle);
+        ball1.dy -= punch * Math.sin(angle);
+        ball2.dx += punch * Math.cos(angle);
+        ball2.dy += punch * Math.sin(angle);
+    }
 }
 
 //window.addEventListener('deviceorientation', handleOrientation);

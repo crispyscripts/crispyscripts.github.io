@@ -3,8 +3,8 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
-var gravity = 0.2;
-var friction = 0.8;
+var gravity = 1;
+var friction = 0.6;
 
 function Ball(x, y, dy, radius, color) {
     this.x = x;
@@ -57,7 +57,7 @@ window.addEventListener('mousedown', event => {
     mouse.x = event.clientX;
     mouse.y = event.clientY;
 
-    balls.push(new Ball(event.clientX, event.clientY, 2, 30, rgb(5,Math.random() * 255 + 1, 5));
+    balls.push(new Ball(event.clientX, event.clientY, 2, 30, 'rgb(25,' + (Math.random() * 255 + 1) + ', 25, 0.75)'));
 });
 
 const mouse = {

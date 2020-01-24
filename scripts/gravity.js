@@ -3,55 +3,11 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
-var gravity = 1;
-var friction = 0.6;
-
-function Ball(x, y, dy, radius, color) {
-    this.x = x;
-    this.y = y;
-    this.radius = radius;
-    this.color = color; 
-    this.velocity = 0.05;
-    this.dy = dy;
-
-    this.update = function() {
-        if (this.y + this.radius + this.dy > canvas.height) {
-            this.dy = -this.dy;
-            this.dy = this.dy * friction;
-        } else {
-            this.dy += gravity;
-        }
-
-        this.y += this.dy;
-
-        //this.draw();
-        findCollision(this);
-        this.draw();
-    }
-
-    this.draw = function() {
-        c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        c.fillStyle = this.color;
-        c.fill();
-        c.closePath();
-    }
-}
-
-var balls = [];
-
-balls.push(new Ball(canvas.width /2, canvas.height / 2, 2, 30, 'green'));
-
-function animate() {
-
-    requestAnimationFrame(animate);
-    c.clearRect(0, 0, canvas.width, canvas.height);
-
-    balls.forEach(ball => ball.update());
-}
 
 function findCollision(ball) {
+    
     this.ball = ball;
+
     for (var i = 0; i < balls.length; i++) {
 
         if (balls[i] == this.ball) { 
@@ -78,13 +34,76 @@ function resolveCollision(ball1, ball2) {
         ball1.x -= ax;
         ball1.y -= ay;
         
-        var punch = 0.5;
+        var punch = 0.9;
                     
         ball1.dx -= punch * Math.cos(angle);
         ball1.dy -= punch * Math.sin(angle);
         ball2.dx += punch * Math.cos(angle);
         ball2.dy += punch * Math.sin(angle);
     }
+}
+
+var gravity = 0.6;
+var friction = 0.6;
+
+function Ball(x, y, dy, radius, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.color = color; 
+    this.velocity = 0.05;
+    this.dy = dy;
+    this.lastY = 0;
+
+    this.update = function() {
+
+        if (this.y + this.radius + this.dy > canvas.height) {
+            this.dy = -this.dy;
+            this.dy = this.dy * friction;
+        } else {
+            this.dy += gravity;
+        }
+
+        this.y += this.dy;
+
+        findCollision(this);
+
+        if (this.y + this.radius > canvas.height) {
+            this.y = innerHeight - this.radius;
+        }
+
+        if (this.x + this.radius > canvas.width) {
+            this.x = innerWidth - this.radius;
+        }
+
+        if (this.x - this.radius < 0) {
+            this.x = 0 + this.radius;
+        }
+
+        this.lastY = this.y;
+
+        this.draw();
+    }
+
+    this.draw = function() {
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        c.fillStyle = this.color;
+        c.fill();
+        c.closePath();
+    }
+}
+
+var balls = [];
+
+balls.push(new Ball(canvas.width /2, canvas.height / 2, 2, 30, 'green'));
+
+function animate() {
+
+    requestAnimationFrame(animate);
+    c.clearRect(0, 0, canvas.width, canvas.height);
+
+    balls.forEach(ball => ball.update());
 }
 
 //window.addEventListener('deviceorientation', handleOrientation);

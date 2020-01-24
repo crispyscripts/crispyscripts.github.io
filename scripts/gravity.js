@@ -4,6 +4,9 @@ canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
 
+var sliderBallSize = document.getElementById('ballSize');
+
+
 function findCollision(ball) {
     
     this.ball = ball;
@@ -64,7 +67,7 @@ function Ball(x, y, dy, radius, color) {
             this.dy += gravity;
         }
 
-        this.y += this.dy;
+        this.y += Math.round(this.dy);
 
         findCollision(this);
 

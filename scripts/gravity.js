@@ -4,8 +4,10 @@ canvas.height = window.innerHeight;
 
 var c = canvas.getContext('2d');
 
-var sliderBallSize = document.getElementById('ballSize');
-
+var drawImageX = 125;
+var drawImageY = 100;
+var collisionRadiusY = 40;
+var images = ["pan", "tomato", "shrimp"];
 
 function findCollision(ball) {
     
@@ -49,7 +51,7 @@ function resolveCollision(ball1, ball2) {
 var gravity = 0.6;
 var friction = 0.6;
 
-function Ball(x, y, dy, radius, color) {
+function Ball(x, y, dy, radius, color, imageSource) {
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -57,6 +59,7 @@ function Ball(x, y, dy, radius, color) {
     this.velocity = 0.05;
     this.dy = dy;
     this.lastY = 0;
+    this.imageSource = imageSource;
 
     this.update = function() {
 
@@ -89,17 +92,21 @@ function Ball(x, y, dy, radius, color) {
     }
 
     this.draw = function() {
-        c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        c.fillStyle = this.color;
-        c.fill();
-        c.closePath();
+        let  img = document.getElementById(imageSource);
+
+        c.drawImage(img, this.x, this.y, drawImageX, drawImageY);
+
+        // c.beginPath();
+        // c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        // c.fillStyle = this.color;
+        // c.fill();
+        // c.closePath();
     }
 }
 
 var balls = [];
 
-balls.push(new Ball(canvas.width /2, canvas.height / 2, 2, 30, 'green'));
+//balls.push(new Ball(canvas.width /2, canvas.height / 2, 2, collisionRadiusY, 'green'));
 
 function animate() {
 
@@ -107,6 +114,12 @@ function animate() {
     c.clearRect(0, 0, canvas.width, canvas.height);
 
     balls.forEach(ball => ball.update());
+}
+
+function getRandomImage() {
+    let randomImageIndex = Math.round(Math.random() * (images.length - 1));
+    
+    return images[randomImageIndex];
 }
 
 //window.addEventListener('deviceorientation', handleOrientation);
@@ -119,7 +132,7 @@ window.addEventListener('mousedown', event => {
     mouse.x = event.clientX;
     mouse.y = event.clientY;
 
-    balls.push(new Ball(event.clientX, event.clientY, 2, 30, 'rgb(25,' + (Math.random() * 255 + 1) + ', 25, 0.75)'));
+    balls.push(new Ball(event.clientX, event.clientY, 2, collisionRadiusY, 'rgb(25,' + (Math.random() * 255 + 1) + ', 25, 0.75)', getRandomImage()));
 });
 
 const mouse = {

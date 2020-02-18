@@ -1,0 +1,23 @@
+{
+  "name": "crispyscripts.github.io",
+  "version": "1.0.0",
+  "description": "Crisp Script Packet",
+  "main": "index.html",
+  "dependencies": {
+    "eslint": "^6.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crispyscripts/crispyscripts.github.io.git"
+  },
+  "author": "Daniel Tilly",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crispyscripts/crispyscripts.github.io/issues"
+  },
+  "homepage": "https://github.com/crispyscripts/crispyscripts.github.io#readme"
+}
